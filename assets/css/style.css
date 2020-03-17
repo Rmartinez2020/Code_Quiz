@@ -1,0 +1,11 @@
+body {
+    background-image:url(../images/Hex_pattern.jpg);
+}
+.empty-row {
+    height:50%;
+}
+#coding-quiz-img {
+    height: 100%;
+    width:100%;
+    display:block;
+}
