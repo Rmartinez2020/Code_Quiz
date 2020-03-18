@@ -194,10 +194,12 @@ showHighScores();
     function answerClicked() {
         if($("#answer-btn").val() === "true"){
             counter--;
+            timerSpan.html("Time Remaining: " + (timeLeft - counter));
             console.log(counter);
         }
         else{
             counter++;
+            timerSpan.html("Time Remaining: " + (timeLeft - counter));
             console.log(counter);
         }
         questionNum++;
