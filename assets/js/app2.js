@@ -17,7 +17,8 @@ $(document).ready(function () {
 
 
     //Globals
-    let timer = 61;
+    let counter = 0;
+    let timeLeft = 10;
 
 
 
@@ -102,15 +103,11 @@ $(document).ready(function () {
         startGameBtn.remove();
         mainDiv.empty();
         //start timer
-        setInterval(myTimer, 1000);
+        myTimer();
         //start asking questions
         getNextQuestion();
         getNextAnswers();
-        if (questionNum > questions.length || timer == 0) {
-            let score = timer;
-            console.log(score);
-            return score;
-        }
+
 
 
     };
@@ -123,10 +120,26 @@ $(document).ready(function () {
     };
     //update timer on page
     function myTimer() {
-        timer--;
-        timerSpan.text("Time Remaining: " + timer);
+        let interval = setInterval(updateTime, 1000);
+
+        timerSpan.html("Time Remaining: " + (timeLeft - counter));
+
+        function updateTime() {
+            counter++;
+            timerSpan.html("Time Remaining: " + (timeLeft - counter));
+            if (counter === timeLeft || questionNum > questions.length) {
+                clearInterval(interval);
+                let score = counter;
+                return score;
+            }
+        }
+
+
     };
     function getNextQuestion() {
+        if (questionNum > questions.length) {
+            return;
+        }
         let questionDiv = $("<div>").addClass("row");
         questionDiv.text(questions[questionNum].question);
         mainDiv.append(questionDiv);
@@ -141,17 +154,12 @@ $(document).ready(function () {
         }
     };
     function answerClicked() {
-        if (questionNum > questions.length) {
-            return;
-        } else {
-            mainDiv.empty();
-            questionNum++;
-            getNextQuestion();
-            getNextAnswers();
-            console.log("answer was clicked" + questionNum);
-        }
+        mainDiv.empty();
+        questionNum++;
+        getNextQuestion();
+        getNextAnswers();
     };
-
+    console.log(questions.length);
 
     //===============================================================
 
