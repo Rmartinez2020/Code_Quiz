@@ -9,13 +9,26 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/modal.css">
 </head>
 
 <body>
     <!--Header with start and restart buttons-->
     <header>
         <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-            <span class="navbar-brand h1" id="highscores">Highscores</span>
+            <button class="btn" id="highscores">
+                <span class="navbar-brand h1" id="highscores">Highscores</span>
+            </button>
+            <!--Modal Div-->
+            <div id="highscoresModal" class="modal">
+
+                <!-- Modal content -->
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <p>Some text in the Modal..</p>
+                </div>
+            </div>
+            <!--Start/StartOver buttons-->
             <span class="navbar-brand h1" id="timer"></span>
             <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarMenu">
                 <span class="navbar-toggler-icon"></span>
@@ -28,6 +41,7 @@
             </div>
         </nav>
     </header>
+
     <!--Main Content-->
     <div class="container">
         <div class="row">
@@ -61,7 +75,9 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
+    <!--JS-->
     <script src="./assets/js/app2.js"></script>
+    <script src="./assets/js/modal.js"></script>
 </body>
 
 </html>

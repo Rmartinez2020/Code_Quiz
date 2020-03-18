@@ -11,8 +11,6 @@ $(document).ready(function () {
     const timerSpan = $("#timer");
     //Quiz Div
     const mainDiv = $("#main-div");
-    //highscores
-    const highscoresBtn = $("#highscores");
     //===============================================================
 
 
@@ -196,8 +194,6 @@ $(document).ready(function () {
         mainDiv.empty();
         getNextQuestion();
         getNextAnswers();
-
-
     };
 
 
@@ -209,4 +205,6 @@ $(document).ready(function () {
     startGameBtn.on("click", startGame);
     startOverBtn.on("click", startOver);
     //===============================================================
+
+
 });
