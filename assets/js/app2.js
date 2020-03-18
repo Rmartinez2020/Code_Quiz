@@ -118,6 +118,9 @@ $(document).ready(function () {
     function startOver() {
         counter = 0;
         questionNum = 0;
+        mainDiv.empty();
+        getNextQuestion();
+        getNextAnswers();
     };
     //show High Scores
     function showHighScores() {
@@ -135,6 +138,7 @@ $(document).ready(function () {
             if (counter === timeLeft || questionNum > (questions.length - 1)) {
                 clearInterval(interval);
                 let score = timeLeft - counter;
+                mainDiv.empty();
                 console.log(score);
                 return score;
             }
@@ -144,6 +148,7 @@ $(document).ready(function () {
     function getNextQuestion() {
         //if there are no more questions end the function
         if (questionNum > (questions.length - 1)) {
+            mainDiv.empty();
             return;
         } else {
             let questionDiv = $("<div>").addClass("row");
