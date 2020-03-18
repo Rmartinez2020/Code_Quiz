@@ -145,6 +145,14 @@ $(document).ready(function () {
                 let score = timeLeft - counter;
                 mainDiv.empty();
                 console.log(score);
+                let userName = prompt("Enter Initials for Highscore!");
+                if(typeof(localStorage.getItem(userName)) == "underfined") {
+                    let userName = prompt("Enter Different Initials for Highscore!");
+                    localStorage.setItem(userName, userName +" " + score);
+                }else{
+                    localStorage.setItem(userName, userName +" " + score);
+                }
+                
                 return score;
             }
         }
@@ -181,7 +189,7 @@ $(document).ready(function () {
         }
     };
 
-    
+
     //when an answer is clicked
     function answerClicked() {
         questionNum++;
