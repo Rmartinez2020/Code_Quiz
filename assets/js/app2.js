@@ -98,8 +98,8 @@ $(document).ready(function () {
 
     //Functions
     //===============================================================
-    
-    
+
+
     //start game
     function startGame() {
         //get rid of start game button and empty main div
@@ -134,7 +134,8 @@ $(document).ready(function () {
             timerSpan.html("Time Remaining: " + (timeLeft - counter));
             if (counter === timeLeft || questionNum > (questions.length - 1)) {
                 clearInterval(interval);
-                let score = counter;
+                let score = timeLeft - counter;
+                console.log(score);
                 return score;
             }
         }
@@ -167,11 +168,11 @@ $(document).ready(function () {
     };
     //when an answer is clicked
     function answerClicked() {
-            questionNum++;
-            mainDiv.empty();
-            getNextQuestion();
-            getNextAnswers();
-        
+        questionNum++;
+        mainDiv.empty();
+        getNextQuestion();
+        getNextAnswers();
+
 
     };
 
