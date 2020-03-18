@@ -16,7 +16,7 @@ $(document).ready(function () {
 
     //Globals
     let counter = 0;
-    let timeLeft = 10;
+    let timeLeft = 15;
     let questionNum = 0;
 
 
@@ -93,7 +93,7 @@ $(document).ready(function () {
     ];
     //===============================================================
 
-
+showHighScores();
     //Functions
     //===============================================================
 
@@ -108,10 +108,9 @@ $(document).ready(function () {
         //start asking questions
         getNextQuestion();
         getNextAnswers();
-
-
-
     };
+
+
     //start over
     function startOver() {
         counter = 0;
@@ -125,7 +124,15 @@ $(document).ready(function () {
 
     //show High Scores
     function showHighScores() {
-
+        for (let i = 0; i < localStorage.length; i++) {
+            key = localStorage.key(i);
+            val = localStorage.getItem(key);
+            console.log(val);
+            let scoreDiv = $("<p>").addClass("text-center");
+            scoreDiv.text(val);
+            $("#modal-text").append(scoreDiv);
+            
+        }
     };
 
 
@@ -144,14 +151,9 @@ $(document).ready(function () {
                 mainDiv.empty();
                 console.log(score);
                 let userName = prompt("Enter Initials for Highscore!");
-                if(typeof(localStorage.getItem(userName)) == "underfined") {
-                    let userName = prompt("Enter Different Initials for Highscore!");
-                    localStorage.setItem(userName, userName +" " + score);
-                }else{
-                    localStorage.setItem(userName, userName +" " + score);
-                }
-                
-                return score;
+               let highScore = userName + ":" + score
+               localStorage.setItem(userName, highScore );
+                return;
             }
         }
     };
@@ -179,7 +181,7 @@ $(document).ready(function () {
         } else {
             for (let i = 0; i < questions[questionNum].answers.length; i++) {
                 let answerDiv = $("<div>").addClass("row");
-                let aBtn = $("<button>").addClass("btn answer-btn btn-success").text(questions[questionNum].answers[i].answer);
+                let aBtn = $("<button>").addClass("btn answer-btn btn-success").attr("value", questions[questionNum].answers[i].c).text(questions[questionNum].answers[i].answer);
                 $(aBtn).on("click", answerClicked);
                 mainDiv.append(answerDiv);
                 answerDiv.append(aBtn);
@@ -190,6 +192,14 @@ $(document).ready(function () {
 
     //when an answer is clicked
     function answerClicked() {
+        if($("#answer-btn").val() === "true"){
+            counter--;
+            console.log(counter);
+        }
+        else{
+            counter++;
+            console.log(counter);
+        }
         questionNum++;
         mainDiv.empty();
         getNextQuestion();
