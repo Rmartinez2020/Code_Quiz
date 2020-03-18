@@ -19,6 +19,7 @@ $(document).ready(function () {
     //Globals
     let counter = 0;
     let timeLeft = 10;
+    let questionNum = 0;
 
 
 
@@ -93,10 +94,12 @@ $(document).ready(function () {
         }
     ];
     //===============================================================
-    questionNum = 0;
+
 
     //Functions
     //===============================================================
+    
+    
     //start game
     function startGame() {
         //get rid of start game button and empty main div
@@ -113,8 +116,10 @@ $(document).ready(function () {
     };
     //start over
     function startOver() {
-
+        counter = 0;
+        questionNum = 0;
     };
+    //show High Scores
     function showHighScores() {
 
     };
@@ -127,39 +132,49 @@ $(document).ready(function () {
         function updateTime() {
             counter++;
             timerSpan.html("Time Remaining: " + (timeLeft - counter));
-            if (counter === timeLeft || questionNum > questions.length) {
+            if (counter === timeLeft || questionNum > (questions.length - 1)) {
                 clearInterval(interval);
                 let score = counter;
                 return score;
             }
         }
-
-
     };
+    //Prints next question onto the page
     function getNextQuestion() {
-        if (questionNum > questions.length) {
+        //if there are no more questions end the function
+        if (questionNum > (questions.length - 1)) {
             return;
+        } else {
+            let questionDiv = $("<div>").addClass("row");
+            questionDiv.text(questions[questionNum].question);
+            mainDiv.append(questionDiv);
         }
-        let questionDiv = $("<div>").addClass("row");
-        questionDiv.text(questions[questionNum].question);
-        mainDiv.append(questionDiv);
     };
+    //Print the answers onto the page
     function getNextAnswers() {
-        for (let i = 0; i < questions[questionNum].answers.length; i++) {
-            let answerDiv = $("<div>").addClass("row");
-            let aBtn = $("<button>").addClass("btn answer-btn btn-success").text(questions[questionNum].answers[i].answer);
-            $(aBtn).on("click", answerClicked);
-            mainDiv.append(answerDiv);
-            answerDiv.append(aBtn);
+        //if there are no more questions end the function
+        if (questionNum > (questions.length - 1)) {
+            return;
+        } else {
+            for (let i = 0; i < questions[questionNum].answers.length; i++) {
+                let answerDiv = $("<div>").addClass("row");
+                let aBtn = $("<button>").addClass("btn answer-btn btn-success").text(questions[questionNum].answers[i].answer);
+                $(aBtn).on("click", answerClicked);
+                mainDiv.append(answerDiv);
+                answerDiv.append(aBtn);
+            }
         }
     };
+    //when an answer is clicked
     function answerClicked() {
-        mainDiv.empty();
-        questionNum++;
-        getNextQuestion();
-        getNextAnswers();
+            questionNum++;
+            mainDiv.empty();
+            getNextQuestion();
+            getNextAnswers();
+        
+
     };
-    console.log(questions.length);
+
 
     //===============================================================
 
