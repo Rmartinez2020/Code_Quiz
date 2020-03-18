@@ -27,66 +27,66 @@ $(document).ready(function () {
     //===============================================================
     const questions = [
         {
-            question: "question 1",
+            question: "What should the first line of your HTML be?",
             answers: [
                 {
-                    answer: "answer 1",
+                    answer: "<!DOCTYPE html>",
                     c: true
                 },
                 {
-                    answer: "answer 2",
+                    answer: "<html>",
                     c: false
                 },
                 {
-                    answer: "answer 3",
+                    answer: "<head>",
                     c: false
                 },
                 {
-                    answer: "answer 4",
+                    answer: "<header>",
                     c: false
                 }
 
             ]
         },
         {
-            question: "question 2",
+            question: "How do you create an element using Jquery?",
             answers: [
                 {
-                    answer: "answer 5",
+                    answer: "document.createElement('div')",
+                    c: false
+                },
+                {
+                    answer: "$('#div')",
+                    c: false
+                },
+                {
+                    answer: "$('<div>')",
                     c: true
                 },
                 {
-                    answer: "answer 6",
-                    c: false
-                },
-                {
-                    answer: "answer 7",
-                    c: false
-                },
-                {
-                    answer: "answer 8",
+                    answer: "$('div')",
                     c: false
                 }
 
             ]
         },
         {
-            question: "question 3",
+            question: "How do you hook into a class in CSS?",
             answers: [
                 {
-                    answer: "answer 9",
+                    answer: "#class",
                     c: true
                 },
                 {
-                    answer: "answer 1",
+                    answer: ".class",
                     c: false
                 },
                 {
-                    answer: "answer 2",
+                    answer: "class{   }",
                     c: false
                 },
                 {
-                    answer: "answer 4",
+                    answer: "class()",
                     c: false
                 }
 
@@ -121,11 +121,16 @@ $(document).ready(function () {
         mainDiv.empty();
         getNextQuestion();
         getNextAnswers();
+        myTimer();
     };
+
+
     //show High Scores
     function showHighScores() {
 
     };
+
+
     //update timer on page
     function myTimer() {
         let interval = setInterval(updateTime, 1000);
@@ -144,6 +149,8 @@ $(document).ready(function () {
             }
         }
     };
+
+
     //Prints next question onto the page
     function getNextQuestion() {
         //if there are no more questions end the function
@@ -156,6 +163,8 @@ $(document).ready(function () {
             mainDiv.append(questionDiv);
         }
     };
+
+
     //Print the answers onto the page
     function getNextAnswers() {
         //if there are no more questions end the function
@@ -171,6 +180,8 @@ $(document).ready(function () {
             }
         }
     };
+
+    
     //when an answer is clicked
     function answerClicked() {
         questionNum++;
